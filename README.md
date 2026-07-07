@@ -6,6 +6,14 @@ Kinetic installation software for a Raspberry Pi that drives stepper motors in r
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+## Artist Statement
+
+Adam collected the eponymous object featured in Driftwood from the Atlantic Ocean off the coast of Newfoundland, his family’s homeland. In this kinetic installation, a microelectronic system controls the driftwood’s movement. This system receives transmissions of live data from a buoy located in the Atlantic ocean off the coast of Newfoundland. The electronics translate the data into motion, enabling the driftwood to respond in real-time to the movement of the ocean. Though we don’t see the ocean, the installation evokes it: the driftwood moves rhythmically through the negative space, just as it would in the water.
+
+By separating the driftwood from its original context and presenting it as sculpture in a stark gallery setting, Adam draws a parallel to the Resettlement Acts that took place in Newfoundland after it became Canada’s 10th province in 1949. Resettlement entailed the relocation of people from remote locations with few economic prospects to areas the Canadian government deemed to have more potential for growth. As a result, the people from the resettled areas left their communities and their land behind to start over in new locations.
+
+In Driftwood, Adam examines the notion of displacement, questioning the changes that occur when something—or someone—is uprooted from its native environment. Here, the driftwood is geographically distant from the ocean, but the ocean remains its lifeblood, carrying it along on invisible waves.
+
 Deploy the repo to `/home/pi/driftwood` on the Pi.
 
 ## Documentation
@@ -60,7 +68,7 @@ flowchart LR
 | Tide | [CHS Integrated Water Level System (IWLS)](https://api-iwls.dfo-mpo.gc.ca) | Bonavista (station 00990) |
 | Waves | [SmartAtlantic ERDDAP](https://www.smartatlantic.ca/erddap/index.html) | Holyrood Buoy 2 |
 
-> **Note:** The original Mouth of Placentia Bay buoy dataset was decommissioned in 2022. The default wave source is the nearest active SmartAtlantic buoy (Holyrood Buoy 2). Change `WAVE_ERDDAP_DATASET` in `config/data_input.py` to use a different dataset.
+> **Note:** The original Mouth of Placentia Bay buoy dataset was decommissioned in 2022. The default wave source is the nearest active SmartAtlantic buoy (Holyrood Buoy 2). Change `WAVE_ERDDAP_DATASET` in `config/data_input.py` to use another dataset if needed.
 
 ## Quick start
 
@@ -161,7 +169,7 @@ Configure network access on the Pi through your OS network manager (e.g. Network
 - [Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
 - [Raspberry Pi Power Supply 5V 3A](https://www.robotshop.com/ca/en/raspberry-pi-power-supply-5v-3a-micro-usb.html) *(optional)*
 - [SlushEngine](https://roboteurs.com/products/slushengine)
-- [Nema 23 Stepper Motor](https://www.amazon.ca/Stepper-Motor-Bipolar-340oz-Router/dp/B074X52ZR2/ref=sr_1_1?s=industrial&ie=UTF8&qid=1521390147&sr=8-1&keywords=340oz.in+1.8A+4.95V) — Bipolar 340oz.in 1.8A 4.95V 4 Wires CNC Router
+- [Nema 23 Stepper Motor](https://www.amazon.ca/Stepper-Motor-Bipolar-340oz-Router/dp/B074X52ZR2/ref=sr_1_1?s=industrial&ie=UTF8&qid=1521390147&sr=8-1&keywords=340oz.in+1.8A+4.95V) — Bipolar 340oz.in, 1.8A, 4.95V
 - [2.1mm Barrel Jack to terminal](https://www.robotshop.com/ca/en/barrel-jack-terminal-fit0151.html)
 - [8mm Aluminum Key Hub w/ Set Screw](https://www.robotshop.com/ca/en/8mm-aluminum-key-hub-set-screw.html)
 - [12VDC 3A Wall Adapter Power Supply](https://www.robotshop.com/ca/en/12vdc-3a-wall-adapter-power-supply.html)

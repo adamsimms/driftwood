@@ -1,5 +1,5 @@
 beautifulsoup4>=4.15.0
-numpy>=1.24
+numpy>=2.5.1
 pandas>=2.0
 requests>=2.31
 

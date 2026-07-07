@@ -1,10 +1,11 @@
 # Driftwood
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Kinetic installation software for a Raspberry Pi that drives stepper motors in response to live tide and wave data from Newfoundland.
 
 ![Driftwood kinetic installation](docs/images/driftwood-03AS.png)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Artist Statement
 

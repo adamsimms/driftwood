@@ -1,7 +1,7 @@
 beautifulsoup4>=4.15.0
 numpy>=1.24
 pandas>=2.0
-requests>=2.31
+requests>=2.34.2
 
 # SlushEngine Python library — install separately on the Raspberry Pi:
 # https://github.com/Roboteurs/slushengine

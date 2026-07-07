@@ -15,8 +15,6 @@ By separating the driftwood from its original context and presenting it as sculp
 
 In Driftwood, Adam examines the notion of displacement, questioning the changes that occur when something—or someone—is uprooted from its native environment. Here, the driftwood is geographically distant from the ocean, but the ocean remains its lifeblood, carrying it along on invisible waves.
 
-Deploy the repo to `/home/pi/driftwood` on the Pi.
-
 ## Documentation
 
 | Doc | Purpose |
@@ -40,7 +38,7 @@ Or from a local checkout:
 ./deploy/install.sh --from-source
 ```
 
-The installer renames `~/logberry` to `~/driftwood` if needed, moves any legacy CSVs from `scripts/` to `data/`, and installs Python dependencies.
+Deploy the repo to `/home/pi/driftwood` on the Pi.
 
 **Requirements:** Python 3.10+, Raspberry Pi OS (or similar Linux) on the Pi. Tested with Raspberry Pi 3 Model B.
 

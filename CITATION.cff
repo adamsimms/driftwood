@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: Driftwood
+authors:
+  - family-names: Simms
+    given-names: Adam
+abstract: >-
+  Kinetic installation software for a Raspberry Pi that drives stepper motors
+  in response to live tide and wave data from Newfoundland.
+license: MIT
+date-released: "2017-01-01"
+repository-code: "https://github.com/adamsimms/driftwood"
+url: "https://adamsimms.xyz"

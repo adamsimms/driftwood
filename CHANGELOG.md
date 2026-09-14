@@ -11,12 +11,16 @@ All notable changes to this project are documented here.
 - `deploy/systemd/` service units
 - Motor control split into `motor_state.py`, `motor_utils.py`, `motor_waves.py`, `motor_session.py`
 - `config/gallery_hours.py` for gallery schedule
+- Rotating file logs in `logs/` for the data stream and motor controller (#11)
+- Motor busy timeout, then home the log and reboot the Pi on unrecoverable errors (#12)
+- Remote graceful stop via `systemctl stop driftwood-motors`, SIGTERM, or `scripts/graceful_stop.py` (#14)
 
 ### Changed
 - Migrated tide fetching from tides.gc.ca HTML scraping to CHS IWLS REST API (Bonavista)
 - Migrated wave fetching from deprecated SmartAtlantic PHP endpoint to ERDDAP (Holyrood Buoy 2)
 - Standardized project naming to **Driftwood** with Pi install path `~/driftwood`
 - Reorganized repository: `config/`, `data/`, `viz/`, `deploy/`
+- Holding/blank waves stay at the current motor position and correct leftover drift (#16)
 
 ### Removed
 - Committed secrets and machine-specific config (`scratchpad.md`, `concordia-wifi/`)

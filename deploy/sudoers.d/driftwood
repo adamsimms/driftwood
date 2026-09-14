@@ -1,0 +1,3 @@
+# Allow the Driftwood motor service to reboot after an unrecoverable error.
+# Install: sudo cp deploy/sudoers.d/driftwood /etc/sudoers.d/driftwood && sudo chmod 440 /etc/sudoers.d/driftwood
+pi ALL=(root) NOPASSWD: /sbin/reboot, /usr/sbin/reboot

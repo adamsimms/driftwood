@@ -10,6 +10,9 @@ WorkingDirectory=/home/pi/driftwood/scripts
 # Allow the data fetcher to populate CSVs before motors start (replaces old rc.local sleep)
 ExecStartPre=/bin/sleep 120
 ExecStart=/usr/bin/python3 /home/pi/driftwood/scripts/project_log_live.py
+# SIGTERM sets the stop flag; closing_action() homes the log before exit
+KillSignal=SIGTERM
+TimeoutStopSec=180
 Restart=on-failure
 RestartSec=30
 

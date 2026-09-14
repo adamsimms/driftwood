@@ -57,17 +57,20 @@ scripts/         Python control software
   motor_*.py     Motor logic (refactored from project_log_live.py)
   check_apis.py  Health check for external data sources
 data/            Runtime CSV output (not committed)
-deploy/          install.sh and systemd units
+logs/            Rotating service logs (not committed)
+deploy/          install.sh, systemd units, sudoers rule
+tests/           Unit tests that do not need motor hardware
 viz/             Optional browser visualization (not used by the Pi)
 ```
 
 ## Making changes
 
 1. Fork the repository and create a branch from `master`.
-2. Make focused changes — one concern per pull request.
+2. Make focused changes. One concern per pull request.
 3. Run `python3 scripts/check_apis.py` if you touch `tide_data.py` or `wave_data.py`.
-4. Do not commit secrets, runtime CSVs, or machine-specific config (see [SECURITY.md](SECURITY.md)).
-5. Open a pull request with:
+4. Run `python3 -m unittest tests/test_runtime.py` if you touch logging, stop, recovery, or blank-wave math.
+5. Do not commit secrets, runtime CSVs, or machine-specific config (see [SECURITY.md](SECURITY.md)).
+6. Open a pull request with:
    - What changed and why
    - How you tested it
    - Whether hardware testing was performed (if motor code changed)

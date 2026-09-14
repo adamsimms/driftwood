@@ -105,6 +105,45 @@ See what Python processes are running:
 ps -ef | grep python
 ```
 
+## Logging
+
+`live_data_stream.py` and `project_log_live.py` write rotating logs under `logs/`:
+
+| File | Contents |
+|------|----------|
+| `logs/live_data_stream.log` | Each successful tide/wave fetch, and fetch errors |
+| `logs/project_log_live.log` | Tide adjustments, motor positions, freeze timeouts, start/stop, recovery |
+
+systemd also captures stdout. On the Pi:
+
+```bash
+journalctl -u driftwood-data -u driftwood-motors -e
+```
+
+## Stopping motors
+
+Do not kill the Python process. That leaves the log wherever it was.
+
+Remote, if services are enabled:
+
+```bash
+sudo systemctl stop driftwood-motors
+```
+
+Or from the repo (works for a terminal session or systemd):
+
+```bash
+cd ~/driftwood/scripts && python3 graceful_stop.py
+```
+
+Either one runs `closing_action()` so the log returns home, then the motor script exits. Locally, Ctrl+C then `Q` still does the same.
+
+## Recovery
+
+If a motor stays busy longer than `motor_busy_timeout_seconds` (default 45s), or the motor loop hits an unexpected error, the controller homes the log and reboots the Pi. That needs the sudoers rule in `deploy/sudoers.d/driftwood` (installed by `deploy/install.sh` when passwordless sudo is available).
+
+Set `reboot_on_unrecoverable_error = False` in `config/data_input.py` to home and exit without rebooting.
+
 ## Configuration
 
 Edit `config/data_input.py` on the Pi:
@@ -116,6 +155,8 @@ Edit `config/data_input.py` on the Pi:
 | `multiplier` | Scales wave motion amplitude |
 | `speed_multiplier` | Scales motor speed (max ~2) |
 | `data_refresh_interval` | Seconds between API polls in the data stream |
+| `motor_busy_timeout_seconds` | Seconds a motor may stay busy before recovery |
+| `reboot_on_unrecoverable_error` | Home the log and reboot the Pi after a freeze or unexpected motor error |
 | `TIDE_STATION_ID` | CHS IWLS station ID (default: Bonavista) |
 | `WAVE_ERDDAP_DATASET` | SmartAtlantic ERDDAP dataset (default: Holyrood Buoy 2) |
 
@@ -149,7 +190,9 @@ sudo systemctl status driftwood-data driftwood-motors
 | Motors do not move | Confirm SlushEngine is installed; run `play_test.py` for manual calibration; check motor power and wiring |
 | `ModuleNotFoundError: Slush` | Install the [SlushEngine Python library](https://github.com/Roboteurs/slushengine) on the Pi |
 | Gallery closed message | Update `config/gallery_hours.py` for your schedule |
+| Motors freeze or hang | Check `logs/project_log_live.log`; a busy timeout homes the log and reboots the Pi |
 | Permission errors on Pi | Ensure scripts run as the `pi` user; systemd units assume `/home/pi/driftwood` |
+| Recovery reboot does nothing | Install `deploy/sudoers.d/driftwood` so user `pi` can run `/sbin/reboot` |
 
 ## Scheduled reboot (optional)
 

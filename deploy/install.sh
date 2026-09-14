@@ -29,7 +29,7 @@ log() {
 }
 
 migrate_legacy_csvs() {
-  mkdir -p "$INSTALL_DIR/data"
+  mkdir -p "$INSTALL_DIR/data" "$INSTALL_DIR/logs"
 
   if [[ -f "$INSTALL_DIR/scripts/tide_data.csv" ]]; then
     log "Moving scripts/tide_data.csv -> data/"
@@ -104,6 +104,16 @@ migrate_legacy_csvs
 
 log "Installing Python dependencies"
 pip3 install -r "$INSTALL_DIR/requirements.txt" --user
+
+if command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null; then
+  log "Installing sudoers rule for Pi reboot on unrecoverable motor errors"
+  sudo cp "$INSTALL_DIR/deploy/sudoers.d/driftwood" /etc/sudoers.d/driftwood
+  sudo chmod 440 /etc/sudoers.d/driftwood
+else
+  log "Skipping sudoers install (no passwordless sudo). To enable recovery reboot:"
+  log "  sudo cp $INSTALL_DIR/deploy/sudoers.d/driftwood /etc/sudoers.d/driftwood"
+  log "  sudo chmod 440 /etc/sudoers.d/driftwood"
+fi
 
 log "Installed at $INSTALL_DIR"
 log "Enable services:"

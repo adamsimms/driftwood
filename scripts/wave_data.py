@@ -45,4 +45,14 @@ def get_wave_data():
     ]
 
     WAVE_STATUS_CSV.parent.mkdir(parents=True, exist_ok=True)
-    wave_data.tail(1).to_csv(WAVE_STATUS_CSV, index=False)
+    latest = wave_data.tail(1)
+    latest.to_csv(WAVE_STATUS_CSV, index=False)
+
+    row = latest.iloc[0]
+    return {
+        "dataset": data_input.WAVE_DATASET_NAME,
+        "max_wave_height": float(row["max_wave_height"]),
+        "sig_wave_height": float(row["sig_wave_height"]),
+        "peak_wave_period": float(row["peak_wave_period"]),
+        "latest_time": str(row["date_time"]),
+    }

@@ -8,6 +8,12 @@ speed_multiplier = 2.5
 # Seconds between successful tide/wave data refreshes in live_data_stream.py
 data_refresh_interval = 300
 
+# Seconds a motor may stay busy before the controller homes the log and recovers.
+motor_busy_timeout_seconds = 45
+
+# After an unrecoverable motor error, home the log then reboot the Pi (no-op off-Pi).
+reboot_on_unrecoverable_error = True
+
 # Canadian Hydrographic Service IWLS tide station (Bonavista, code 00990)
 TIDE_STATION_ID = "5cebf1e33d0f4a073c4bc189"
 TIDE_STATION_NAME = "Bonavista"

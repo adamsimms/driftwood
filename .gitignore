@@ -3,6 +3,11 @@
 # Runtime data (fetched live on the Pi)
 data/tide_data.csv
 data/wave_status.csv
+data/STOP
+
+# Runtime logs (rotated by the Python services)
+logs/*.log
+logs/*.log.*
 
 # Local notes and machine-specific config
 scratchpad.md

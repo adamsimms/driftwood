@@ -40,3 +40,11 @@ def get_tide_data():
 
     TIDE_DATA_CSV.parent.mkdir(parents=True, exist_ok=True)
     final_data.to_csv(TIDE_DATA_CSV, index=False)
+
+    latest = final_data.iloc[-1]
+    return {
+        "station": data_input.TIDE_STATION_NAME,
+        "rows": len(final_data),
+        "latest_height_m": float(latest["Height"]),
+        "latest_time": str(latest["date_time"]),
+    }

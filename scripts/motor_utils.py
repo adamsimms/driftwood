@@ -1,6 +1,8 @@
 import time
 
+from config import data_input
 import motor_state as state
+from runtime import MotorTimeoutError, StopRequested, should_stop
 
 
 def cm_to_step(cm):
@@ -30,6 +32,13 @@ def time_elapsed(time_value):
     return time.time() - time_value
 
 
+def net_wave_diff(tide_distance, planned_diff):
+    """Blank/holding waves (tide_distance=0) must not net-move the log."""
+    if tide_distance == 0:
+        return 0
+    return planned_diff
+
+
 def tide_control(value):
     if value > 1.1:
         return float(1.1)
@@ -44,6 +53,23 @@ def motor_reset(motor=None):
     motor.setMicroSteps(1)
 
 
-def wait_for_motors():
+def wait_until_idle(motor, timeout=None, ignore_stop=False):
+    timeout = data_input.motor_busy_timeout_seconds if timeout is None else timeout
+    start = time.time()
+    while motor.isBusy():
+        if not ignore_stop and should_stop():
+            raise StopRequested()
+        if time.time() - start > timeout:
+            raise MotorTimeoutError(f"Motor stayed busy for {timeout}s")
+        time.sleep(0.01)
+
+
+def wait_for_motors(timeout=None, ignore_stop=False):
+    timeout = data_input.motor_busy_timeout_seconds if timeout is None else timeout
+    start = time.time()
     while state.Motor0.isBusy() or state.Motor1.isBusy():
-        continue
+        if not ignore_stop and should_stop():
+            raise StopRequested()
+        if time.time() - start > timeout:
+            raise MotorTimeoutError(f"Motors stayed busy for {timeout}s")
+        time.sleep(0.01)

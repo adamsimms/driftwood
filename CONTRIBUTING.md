@@ -65,7 +65,7 @@ viz/             Optional browser visualization (not used by the Pi)
 
 ## Making changes
 
-1. Fork the repository and create a branch from `master`.
+1. Fork the repository and create a branch from `main`.
 2. Make focused changes. One concern per pull request.
 3. Run `python3 scripts/check_apis.py` if you touch `tide_data.py` or `wave_data.py`.
 4. Run `python3 -m unittest tests/test_runtime.py` if you touch logging, stop, recovery, or blank-wave math.

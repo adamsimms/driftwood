@@ -29,7 +29,7 @@ In Driftwood, Adam examines the notion of displacement, questioning the changes 
 From the Pi (clones from GitHub):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/adamsimms/driftwood/master/deploy/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/adamsimms/driftwood/main/deploy/install.sh | bash
 ```
 
 Or from a local checkout:

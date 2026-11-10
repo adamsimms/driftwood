@@ -1,0 +1,37 @@
+---
+description: Keep docs sparse (contracts and decisions only); work decisions vs proposal choices vs options
+alwaysApply: true
+---
+
+# Documentation hygiene
+
+## Canonical docs
+
+| File | Role |
+|------|------|
+| `README.md` | What the installation does, hardware, how to run |
+| `CHANGELOG.md` | User- or ops-visible shipping notes |
+
+Add another `docs/*.md` only if it is a decision record or an ops contract the code cannot own. Default: do not add a new doc.
+
+## Decisions: work, proposal, option
+
+- **Work decision** (true whatever happens to any application): edit the README in place, then add one dated line to a Decisions log saying what changed and where. Delete log lines a later change supersedes; git keeps the history.
+- **Proposal choice** (made for one call: what to show, how to pitch): never goes here. It lives with the application in the private studio repo. If the show is confirmed it becomes that show's plan there; it reaches these docs only if it holds beyond that show.
+- **Option or research** (a menu, a precedent, a finding): options go in the relevant section's shortlist; precedents go to Zotero as notes on the item.
+
+## Never commit
+
+- Milestone or issue status diaries; ship status belongs in issues and PRs
+- Phase timelines or dates in docs (dates live on issues)
+- Agent routing, prompt patterns, model pickers (AGENTS.md only)
+- Links to chat transcripts
+- Application history, venue-specific pitch language, contact details
+- Live credentials
+
+## Keep in sync (same PR)
+
+| Change touches | Update |
+|---|---|
+| Public behavior, hardware, how to run or deploy | `README.md` |
+| User- or ops-visible shipping note | `CHANGELOG.md` |

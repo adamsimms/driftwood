@@ -26,7 +26,7 @@ Issues here are about the work. Applications, calls and their deadlines are trac
 
 ## Project media
 
-Photos, renders, sound and video never stay in this repo's ignored folders: they are not backed up. They go to the project's synced Drive folder, `$MEDIA_DIR` (`30 STUDIO/32 PROJECTS/DRIFTWOOD/`): `01-REFERENCES`, `02-STUDIES`, `03-TESTS`, `04-ARTWORK`, `05-DOCUMENTATION`. Inside 02 and 03, one dated folder per piece of work: `<YYYY-MM>-<NAME>`. Older folders there predate this layout and are not reorganized yet.
+Photos, renders, sound and video never stay in this repo's ignored folders: they are not backed up. They go to the project's media folder, `$MEDIA_DIR` (`30 STUDIO/32 PROJECTS/DRIFTWOOD/`), a local outbox that a daily job copies to off-site storage and clears 14 days after the copies are verified. Older media is fetched from that storage, not read back from `$MEDIA_DIR`. Stages: `01-REFERENCES`, `02-STUDIES`, `03-TESTS`, `04-ARTWORK`, `05-DOCUMENTATION`. Inside 02 and 03, one dated folder per piece of work: `<YYYY-MM>-<NAME>`. Older folders there predate this layout and are not reorganized yet.
 
 ## Support
 
